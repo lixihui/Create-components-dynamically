@@ -1,0 +1,33 @@
+
+//在vue组件中引用js方法
+
+export default {
+    install (vue) {
+      vue.prototype.$showDom = aaa
+      function aaa () {
+        var Show = vue.extend({
+          template: `<div class='showT' >
+                  <div>
+                      <h3>弹框</h3>
+                      <button @click='yes'>YES</button>
+                      <button @click='no'>NO</button>
+                  </div>
+              </div>`,
+          methods: {
+            yes () {
+              document.body.removeChild(this.$el)
+            },
+            no () {
+              document.body.removeChild(this.$el)
+            }
+          }
+        })
+        var newshow = new Show()
+        var showEl = newshow.$mount().$el
+        document.body.appendChild(showEl)
+      }
+    }
+  }
+  // 引入 shouDoment
+  // 通过中间件引入挂载
+  Vue.use(shouDoment)
